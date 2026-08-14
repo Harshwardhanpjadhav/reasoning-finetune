@@ -1,0 +1,18 @@
+# Core training
+unsloth
+transformers>=4.44.0
+datasets>=2.20.0
+peft>=0.12.0
+trl>=0.9.6
+torch>=2.3.0
+accelerate>=0.33.0
+
+# Tracking / tracing / eval
+wandb
+langfuse
+deepeval
+
+# Utilities
+pyyaml
+tqdm
+pandas

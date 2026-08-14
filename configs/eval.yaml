@@ -1,0 +1,12 @@
+gsm8k:
+  split: "test"
+  limit: 200                # keep small on free-tier GPUs; raise once pipeline is trusted
+  max_new_tokens: 512
+  results_dir: "results"
+
+generalization:
+  # held-out domain the model was NOT trained on — tests whether reasoning transferred
+  # or the model just memorized GSM8K-style patterns
+  domain: "logic_puzzles"
+  limit: 100
+  judge_model: "gpt-4o-mini"   # or any model available to DeepEval for LLM-as-judge
