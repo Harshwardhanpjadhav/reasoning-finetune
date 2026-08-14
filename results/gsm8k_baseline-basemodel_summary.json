@@ -1,0 +1,8 @@
+{
+  "base_model": "unsloth/gemma-2-2b-bnb-4bit",
+  "adapter": null,
+  "tag": "baseline-basemodel",
+  "n_examples": 100,
+  "accuracy": 0.06,
+  "elapsed_sec": 2659.3
+}
