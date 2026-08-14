@@ -1,0 +1,40 @@
+{
+  "os": "Linux-6.8.0-1062-aws-x86_64-with-glibc2.39",
+  "python": "CPython 3.12.11",
+  "startedAt": "2026-08-14T09:05:35.585522Z",
+  "program": "/teamspace/studios/this_studio/reasoning-finetune/scripts/run_training.py",
+  "codePath": "scripts/run_training.py",
+  "codePathLocal": "scripts/run_training.py",
+  "git": {
+    "remote": "https://github.com/Harshwardhanpjadhav/reasoning-finetune",
+    "commit": "0dc9a79c28ed6dbb38871f4b96b88ef9488c1f9f"
+  },
+  "email": "harshwardhanpj2001@gmail.com",
+  "root": "/teamspace/studios/this_studio/reasoning-finetune",
+  "host": "ip-10-192-15-134",
+  "executable": "/home/zeus/miniconda3/envs/cloudspace/bin/python",
+  "cpu_count": 2,
+  "cpu_count_logical": 4,
+  "gpu": "Tesla T4",
+  "gpu_count": 1,
+  "disk": {
+    "/": {
+      "total": "244936478720",
+      "used": "51284480000"
+    }
+  },
+  "memory": {
+    "total": "16554995712"
+  },
+  "gpu_nvidia": [
+    {
+      "name": "Tesla T4",
+      "memoryTotal": "16106127360",
+      "cudaCores": 2560,
+      "architecture": "Turing",
+      "uuid": "GPU-3d4e4b27-0f26-3183-c4bd-66dc9cd3b41e"
+    }
+  ],
+  "cudaVersion": "13.0",
+  "writerId": "v9ufm5phh193pis37lyl5dwimz65ivks"
+}

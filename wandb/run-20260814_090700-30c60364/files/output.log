@@ -1,0 +1,373 @@
+[34m[1mwandb[0m: Detected [huggingface_hub.inference, openai] in use.
+[34m[1mwandb[0m: Use W&B Weave for improved LLM call tracing. Install Weave with `pip install weave` then add `import weave` to the top of your script.
+[34m[1mwandb[0m: For more information, check out the docs at: https://weave-docs.wandb.ai
+==((====))==  Unsloth 2026.8.16: Fast Gemma2 patching. Transformers: 5.5.0.
+   \\   /|    Tesla T4. Num GPUs = 1. Max memory: 14.562 GB. Platform: Linux.
+O^O/ \_/ \    Torch: 2.11.0+cu130. CUDA: 7.5. CUDA Toolkit: 13.0. Triton: 3.6.0
+\        /    Bfloat16 = FALSE. FA [Xformers = 0.0.35. FA2 = False]
+ "-____-"     Free license: http://github.com/unslothai/unsloth
+Unsloth: Fast downloading is enabled - ignore downloading bars which are red colored!
+Loading weights: 100%|████████████████████████████████████████████████████████████████████████████████████████████████████████| 288/288 [00:01<00:00, 230.13it/s]
+Unsloth: Will load unsloth/gemma-2-2b-bnb-4bit as a legacy tokenizer.
+Unsloth: Restored added_tokens_decoder metadata in /teamspace/studios/this_studio/reasoning-finetune/_unsloth_sentencepiece_temp/tokenizer_7k2hwhae/tokenizer_config.json.
+tokenizer.model: downloading bytes: █████████████████████████████████████████████████████████████████████████████████████████████████████████| 3.02MB,  298kB/s  
+tokenizer.model: reconstructing file: 100%|█████████████████████████████████████████████████████████████████████████████████████████| 4.24MB / 4.24MB,  420kB/s  
+Unsloth: Preserved sentencepiece asset `tokenizer.model` in /teamspace/studios/this_studio/reasoning-finetune/_unsloth_sentencepiece_temp/tokenizer_7k2hwhae.
+Unsloth: Dropout = 0 is supported for fast patching. You are using dropout = 0.05.
+Unsloth will patch all other layers, except LoRA matrices, causing a performance hit.
+Unsloth 2026.8.16 patched 26 layers with 0 QKV layers, 0 O layers and 0 MLP layers.
+Map: 100%|██████████████████████████████████████████████████████████████████████████████████████████████████████████| 7473/7473 [00:00<00:00, 9858.70 examples/s]
+warmup_ratio is deprecated and will be removed in v5.2. Use `warmup_steps` instead.
+Unsloth: We found double BOS tokens - we shall remove one automatically.
+Unsloth: Tokenizing ["text"] (num_proc=2): 100%|█████████████████████████████████████████████████████████████████████| 7473/7473 [00:15<00:00, 480.71 examples/s]
+==((====))==  Unsloth - 2x faster free finetuning | Num GPUs used = 1
+   \\   /|    Num examples = 7,473 | Num Epochs = 3 | Total steps = 2,805
+O^O/ \_/ \    Batch size per device = 2 | Gradient accumulation steps = 4
+\        /    Data Parallel GPUs = 1 | Total batch size (2 x 4 x 1) = 8
+ "-____-"     Trainable parameters = 20,766,720 of 2,635,108,608 (0.79% trained)
+  0%|                                                                                                                                   | 0/2805 [00:00<?, ?it/s]`use_return_dict` is deprecated! Use `return_dict` instead!
+Unsloth: Will smartly offload gradients to save VRAM!
+Unsloth: Double buffering enabled (parallel H2D + compute) for backward pass.
+  4%|████▏                                                                                                                  | 100/2805 [05:33<1:57:24,  2.60s/it]Unsloth: Restored added_tokens_decoder metadata in results/checkpoints/gsm8k-lora/checkpoint-100/tokenizer_config.json.
+{'loss': '20.13', 'grad_norm': '1.024', 'learning_rate': '2.118e-05', 'epoch': '0.0107'}
+{'loss': '20.33', 'grad_norm': '1.198', 'learning_rate': '4.471e-05', 'epoch': '0.02141'}
+{'loss': '18.96', 'grad_norm': '2.614', 'learning_rate': '6.824e-05', 'epoch': '0.03211'}
+{'loss': '16.63', 'grad_norm': '2.828', 'learning_rate': '9.176e-05', 'epoch': '0.04282'}
+{'loss': '12.73', 'grad_norm': '2.521', 'learning_rate': '0.0001153', 'epoch': '0.05352'}
+{'loss': '9.086', 'grad_norm': '1.589', 'learning_rate': '0.0001388', 'epoch': '0.06422'}
+{'loss': '7.339', 'grad_norm': '1.18', 'learning_rate': '0.0001624', 'epoch': '0.07493'}
+{'loss': '6.379', 'grad_norm': '0.884', 'learning_rate': '0.0001859', 'epoch': '0.08563'}
+{'loss': '5.849', 'grad_norm': '0.6398', 'learning_rate': '0.0001997', 'epoch': '0.09633'}
+{'loss': '5.576', 'grad_norm': '0.8261', 'learning_rate': '0.000199', 'epoch': '0.107'}
+Unsloth: Preserved sentencepiece asset `tokenizer.model` in results/checkpoints/gsm8k-lora/checkpoint-100.
+  7%|████████▍                                                                                                              | 200/2805 [09:56<1:52:35,  2.59s/it]Unsloth: Restored added_tokens_decoder metadata in results/checkpoints/gsm8k-lora/checkpoint-200/tokenizer_config.json.
+{'loss': '5.381', 'grad_norm': '0.7192', 'learning_rate': '0.0001982', 'epoch': '0.1177'}
+{'loss': '5.234', 'grad_norm': '0.6843', 'learning_rate': '0.0001975', 'epoch': '0.1284'}
+{'loss': '4.984', 'grad_norm': '0.8441', 'learning_rate': '0.0001968', 'epoch': '0.1391'}
+{'loss': '5.007', 'grad_norm': '1.383', 'learning_rate': '0.000196', 'epoch': '0.1499'}
+{'loss': '4.77', 'grad_norm': '1.361', 'learning_rate': '0.0001953', 'epoch': '0.1606'}
+{'loss': '4.718', 'grad_norm': '0.8687', 'learning_rate': '0.0001946', 'epoch': '0.1713'}
+{'loss': '4.665', 'grad_norm': '1.213', 'learning_rate': '0.0001938', 'epoch': '0.182'}
+{'loss': '4.696', 'grad_norm': '1.125', 'learning_rate': '0.0001931', 'epoch': '0.1927'}
+{'loss': '4.537', 'grad_norm': '0.6904', 'learning_rate': '0.0001924', 'epoch': '0.2034'}
+{'loss': '4.466', 'grad_norm': '0.8255', 'learning_rate': '0.0001916', 'epoch': '0.2141'}
+Unsloth: Preserved sentencepiece asset `tokenizer.model` in results/checkpoints/gsm8k-lora/checkpoint-200.
+ 11%|████████████▋                                                                                                          | 300/2805 [14:24<1:46:22,  2.55s/it]Unsloth: Restored added_tokens_decoder metadata in results/checkpoints/gsm8k-lora/checkpoint-300/tokenizer_config.json.
+{'loss': '4.431', 'grad_norm': '0.9708', 'learning_rate': '0.0001909', 'epoch': '0.2248'}
+{'loss': '4.316', 'grad_norm': '0.8883', 'learning_rate': '0.0001901', 'epoch': '0.2355'}
+{'loss': '4.291', 'grad_norm': '0.8342', 'learning_rate': '0.0001894', 'epoch': '0.2462'}
+{'loss': '4.2', 'grad_norm': '1.084', 'learning_rate': '0.0001887', 'epoch': '0.2569'}
+{'loss': '4.167', 'grad_norm': '0.8078', 'learning_rate': '0.0001879', 'epoch': '0.2676'}
+{'loss': '4.008', 'grad_norm': '1.254', 'learning_rate': '0.0001872', 'epoch': '0.2783'}
+{'loss': '4.06', 'grad_norm': '0.7546', 'learning_rate': '0.0001865', 'epoch': '0.289'}
+{'loss': '4.072', 'grad_norm': '0.7747', 'learning_rate': '0.0001857', 'epoch': '0.2997'}
+{'loss': '3.944', 'grad_norm': '1.058', 'learning_rate': '0.000185', 'epoch': '0.3104'}
+{'loss': '3.931', 'grad_norm': '1.034', 'learning_rate': '0.0001843', 'epoch': '0.3211'}
+Unsloth: Preserved sentencepiece asset `tokenizer.model` in results/checkpoints/gsm8k-lora/checkpoint-300.
+ 14%|████████████████▉                                                                                                      | 400/2805 [18:50<1:43:24,  2.58s/it]Unsloth: Restored added_tokens_decoder metadata in results/checkpoints/gsm8k-lora/checkpoint-400/tokenizer_config.json.
+{'loss': '3.902', 'grad_norm': '1.012', 'learning_rate': '0.0001835', 'epoch': '0.3318'}
+{'loss': '3.836', 'grad_norm': '0.9224', 'learning_rate': '0.0001828', 'epoch': '0.3425'}
+{'loss': '3.785', 'grad_norm': '1.248', 'learning_rate': '0.0001821', 'epoch': '0.3532'}
+{'loss': '3.76', 'grad_norm': '0.6352', 'learning_rate': '0.0001813', 'epoch': '0.3639'}
+{'loss': '3.804', 'grad_norm': '0.8705', 'learning_rate': '0.0001806', 'epoch': '0.3746'}
+{'loss': '3.789', 'grad_norm': '1.196', 'learning_rate': '0.0001799', 'epoch': '0.3853'}
+{'loss': '3.678', 'grad_norm': '0.8178', 'learning_rate': '0.0001791', 'epoch': '0.396'}
+{'loss': '3.732', 'grad_norm': '0.7837', 'learning_rate': '0.0001784', 'epoch': '0.4067'}
+{'loss': '3.733', 'grad_norm': '0.9324', 'learning_rate': '0.0001776', 'epoch': '0.4174'}
+{'loss': '3.65', 'grad_norm': '0.8345', 'learning_rate': '0.0001769', 'epoch': '0.4282'}
+Unsloth: Preserved sentencepiece asset `tokenizer.model` in results/checkpoints/gsm8k-lora/checkpoint-400.
+ 18%|█████████████████████▏                                                                                                 | 500/2805 [23:14<1:39:36,  2.59s/it]Unsloth: Restored added_tokens_decoder metadata in results/checkpoints/gsm8k-lora/checkpoint-500/tokenizer_config.json.
+{'loss': '3.613', 'grad_norm': '1.174', 'learning_rate': '0.0001762', 'epoch': '0.4389'}
+{'loss': '3.566', 'grad_norm': '0.8022', 'learning_rate': '0.0001754', 'epoch': '0.4496'}
+{'loss': '3.627', 'grad_norm': '1.368', 'learning_rate': '0.0001747', 'epoch': '0.4603'}
+{'loss': '3.533', 'grad_norm': '1.049', 'learning_rate': '0.000174', 'epoch': '0.471'}
+{'loss': '3.621', 'grad_norm': '1.02', 'learning_rate': '0.0001732', 'epoch': '0.4817'}
+{'loss': '3.53', 'grad_norm': '1.187', 'learning_rate': '0.0001725', 'epoch': '0.4924'}
+{'loss': '3.442', 'grad_norm': '0.8487', 'learning_rate': '0.0001718', 'epoch': '0.5031'}
+{'loss': '3.448', 'grad_norm': '0.9365', 'learning_rate': '0.000171', 'epoch': '0.5138'}
+{'loss': '3.406', 'grad_norm': '1.054', 'learning_rate': '0.0001703', 'epoch': '0.5245'}
+{'loss': '3.36', 'grad_norm': '0.9604', 'learning_rate': '0.0001696', 'epoch': '0.5352'}
+Unsloth: Preserved sentencepiece asset `tokenizer.model` in results/checkpoints/gsm8k-lora/checkpoint-500.
+ 21%|█████████████████████████▍                                                                                             | 600/2805 [27:36<1:32:57,  2.53s/it]Unsloth: Restored added_tokens_decoder metadata in results/checkpoints/gsm8k-lora/checkpoint-600/tokenizer_config.json.
+{'loss': '3.331', 'grad_norm': '1.11', 'learning_rate': '0.0001688', 'epoch': '0.5459'}
+{'loss': '3.293', 'grad_norm': '0.9366', 'learning_rate': '0.0001681', 'epoch': '0.5566'}
+{'loss': '3.349', 'grad_norm': '0.9651', 'learning_rate': '0.0001674', 'epoch': '0.5673'}
+{'loss': '3.334', 'grad_norm': '1.653', 'learning_rate': '0.0001666', 'epoch': '0.578'}
+{'loss': '3.378', 'grad_norm': '0.729', 'learning_rate': '0.0001659', 'epoch': '0.5887'}
+{'loss': '3.282', 'grad_norm': '1.342', 'learning_rate': '0.0001651', 'epoch': '0.5994'}
+{'loss': '3.285', 'grad_norm': '1.051', 'learning_rate': '0.0001644', 'epoch': '0.6101'}
+{'loss': '3.244', 'grad_norm': '0.8918', 'learning_rate': '0.0001637', 'epoch': '0.6208'}
+{'loss': '3.307', 'grad_norm': '1.247', 'learning_rate': '0.0001629', 'epoch': '0.6315'}
+{'loss': '3.317', 'grad_norm': '1.055', 'learning_rate': '0.0001622', 'epoch': '0.6422'}
+Unsloth: Preserved sentencepiece asset `tokenizer.model` in results/checkpoints/gsm8k-lora/checkpoint-600.
+ 25%|█████████████████████████████▋                                                                                         | 700/2805 [32:00<1:32:13,  2.63s/it]Unsloth: Restored added_tokens_decoder metadata in results/checkpoints/gsm8k-lora/checkpoint-700/tokenizer_config.json.
+{'loss': '3.221', 'grad_norm': '1.111', 'learning_rate': '0.0001615', 'epoch': '0.6529'}
+{'loss': '3.341', 'grad_norm': '0.8899', 'learning_rate': '0.0001607', 'epoch': '0.6636'}
+{'loss': '3.231', 'grad_norm': '0.8588', 'learning_rate': '0.00016', 'epoch': '0.6743'}
+{'loss': '3.266', 'grad_norm': '0.9294', 'learning_rate': '0.0001593', 'epoch': '0.685'}
+{'loss': '3.242', 'grad_norm': '0.9233', 'learning_rate': '0.0001585', 'epoch': '0.6957'}
+{'loss': '3.251', 'grad_norm': '0.7635', 'learning_rate': '0.0001578', 'epoch': '0.7064'}
+{'loss': '3.178', 'grad_norm': '1.123', 'learning_rate': '0.0001571', 'epoch': '0.7172'}
+{'loss': '3.141', 'grad_norm': '0.9754', 'learning_rate': '0.0001563', 'epoch': '0.7279'}
+{'loss': '3.068', 'grad_norm': '0.871', 'learning_rate': '0.0001556', 'epoch': '0.7386'}
+{'loss': '3.157', 'grad_norm': '0.8485', 'learning_rate': '0.0001549', 'epoch': '0.7493'}
+Unsloth: Preserved sentencepiece asset `tokenizer.model` in results/checkpoints/gsm8k-lora/checkpoint-700.
+ 29%|█████████████████████████████████▉                                                                                     | 800/2805 [36:22<1:29:39,  2.68s/it]Unsloth: Restored added_tokens_decoder metadata in results/checkpoints/gsm8k-lora/checkpoint-800/tokenizer_config.json.
+{'loss': '3.122', 'grad_norm': '1.117', 'learning_rate': '0.0001541', 'epoch': '0.76'}
+{'loss': '3.23', 'grad_norm': '0.8494', 'learning_rate': '0.0001534', 'epoch': '0.7707'}
+{'loss': '3.166', 'grad_norm': '1.562', 'learning_rate': '0.0001526', 'epoch': '0.7814'}
+{'loss': '3.163', 'grad_norm': '2.181', 'learning_rate': '0.0001519', 'epoch': '0.7921'}
+{'loss': '3.044', 'grad_norm': '0.8076', 'learning_rate': '0.0001512', 'epoch': '0.8028'}
+{'loss': '3.146', 'grad_norm': '0.8738', 'learning_rate': '0.0001504', 'epoch': '0.8135'}
+{'loss': '3.119', 'grad_norm': '1.141', 'learning_rate': '0.0001497', 'epoch': '0.8242'}
+{'loss': '3.058', 'grad_norm': '0.8758', 'learning_rate': '0.000149', 'epoch': '0.8349'}
+{'loss': '2.996', 'grad_norm': '1.249', 'learning_rate': '0.0001482', 'epoch': '0.8456'}
+{'loss': '3.132', 'grad_norm': '1.129', 'learning_rate': '0.0001475', 'epoch': '0.8563'}
+Unsloth: Preserved sentencepiece asset `tokenizer.model` in results/checkpoints/gsm8k-lora/checkpoint-800.
+ 32%|██████████████████████████████████████▏                                                                                | 900/2805 [40:42<1:20:37,  2.54s/it]Unsloth: Restored added_tokens_decoder metadata in results/checkpoints/gsm8k-lora/checkpoint-900/tokenizer_config.json.
+{'loss': '3.107', 'grad_norm': '1.223', 'learning_rate': '0.0001468', 'epoch': '0.867'}
+{'loss': '3.089', 'grad_norm': '0.9304', 'learning_rate': '0.000146', 'epoch': '0.8777'}
+{'loss': '2.931', 'grad_norm': '1.248', 'learning_rate': '0.0001453', 'epoch': '0.8884'}
+{'loss': '3.027', 'grad_norm': '0.8816', 'learning_rate': '0.0001446', 'epoch': '0.8991'}
+{'loss': '3.034', 'grad_norm': '0.9685', 'learning_rate': '0.0001438', 'epoch': '0.9098'}
+{'loss': '3.007', 'grad_norm': '1.557', 'learning_rate': '0.0001431', 'epoch': '0.9205'}
+{'loss': '3.031', 'grad_norm': '0.9063', 'learning_rate': '0.0001424', 'epoch': '0.9312'}
+{'loss': '3.127', 'grad_norm': '1.141', 'learning_rate': '0.0001416', 'epoch': '0.9419'}
+{'loss': '2.993', 'grad_norm': '1.516', 'learning_rate': '0.0001409', 'epoch': '0.9526'}
+{'loss': '2.921', 'grad_norm': '1.453', 'learning_rate': '0.0001401', 'epoch': '0.9633'}
+Unsloth: Preserved sentencepiece asset `tokenizer.model` in results/checkpoints/gsm8k-lora/checkpoint-900.
+ 36%|██████████████████████████████████████████                                                                            | 1000/2805 [45:49<1:19:10,  2.63s/it]Unsloth: Restored added_tokens_decoder metadata in results/checkpoints/gsm8k-lora/checkpoint-1000/tokenizer_config.json.
+{'loss': '3.012', 'grad_norm': '0.8981', 'learning_rate': '0.0001394', 'epoch': '0.974'}
+{'loss': '2.931', 'grad_norm': '1.146', 'learning_rate': '0.0001387', 'epoch': '0.9847'}
+{'loss': '2.956', 'grad_norm': '1.033', 'learning_rate': '0.0001379', 'epoch': '0.9955'}
+{'loss': '2.961', 'grad_norm': '1.563', 'learning_rate': '0.0001372', 'epoch': '1.005'}
+{'loss': '2.949', 'grad_norm': '1.045', 'learning_rate': '0.0001365', 'epoch': '1.016'}
+{'loss': '2.971', 'grad_norm': '1.086', 'learning_rate': '0.0001357', 'epoch': '1.027'}
+{'loss': '2.993', 'grad_norm': '0.9015', 'learning_rate': '0.000135', 'epoch': '1.037'}
+{'loss': '2.87', 'grad_norm': '1.076', 'learning_rate': '0.0001343', 'epoch': '1.048'}
+{'loss': '2.874', 'grad_norm': '1.175', 'learning_rate': '0.0001335', 'epoch': '1.059'}
+{'loss': '2.911', 'grad_norm': '1.228', 'learning_rate': '0.0001328', 'epoch': '1.07'}
+Unsloth: Preserved sentencepiece asset `tokenizer.model` in results/checkpoints/gsm8k-lora/checkpoint-1000.
+ 39%|██████████████████████████████████████████████▎                                                                       | 1100/2805 [50:09<1:13:40,  2.59s/it]Unsloth: Restored added_tokens_decoder metadata in results/checkpoints/gsm8k-lora/checkpoint-1100/tokenizer_config.json.
+{'loss': '2.917', 'grad_norm': '0.9888', 'learning_rate': '0.0001321', 'epoch': '1.08'}
+{'loss': '2.942', 'grad_norm': '1.162', 'learning_rate': '0.0001313', 'epoch': '1.091'}
+{'loss': '2.85', 'grad_norm': '1.165', 'learning_rate': '0.0001306', 'epoch': '1.102'}
+{'loss': '2.867', 'grad_norm': '1.328', 'learning_rate': '0.0001299', 'epoch': '1.112'}
+{'loss': '2.875', 'grad_norm': '1.092', 'learning_rate': '0.0001291', 'epoch': '1.123'}
+{'loss': '2.889', 'grad_norm': '1.4', 'learning_rate': '0.0001284', 'epoch': '1.134'}
+{'loss': '2.902', 'grad_norm': '1.17', 'learning_rate': '0.0001276', 'epoch': '1.145'}
+{'loss': '2.911', 'grad_norm': '0.9297', 'learning_rate': '0.0001269', 'epoch': '1.155'}
+{'loss': '2.854', 'grad_norm': '1.182', 'learning_rate': '0.0001262', 'epoch': '1.166'}
+{'loss': '2.843', 'grad_norm': '0.9729', 'learning_rate': '0.0001254', 'epoch': '1.177'}
+Unsloth: Preserved sentencepiece asset `tokenizer.model` in results/checkpoints/gsm8k-lora/checkpoint-1100.
+ 43%|██████████████████████████████████████████████████▍                                                                   | 1200/2805 [54:30<1:10:48,  2.65s/it]Unsloth: Restored added_tokens_decoder metadata in results/checkpoints/gsm8k-lora/checkpoint-1200/tokenizer_config.json.
+{'loss': '2.923', 'grad_norm': '1.154', 'learning_rate': '0.0001247', 'epoch': '1.187'}
+{'loss': '2.911', 'grad_norm': '1.15', 'learning_rate': '0.000124', 'epoch': '1.198'}
+{'loss': '2.896', 'grad_norm': '1.228', 'learning_rate': '0.0001232', 'epoch': '1.209'}
+{'loss': '2.857', 'grad_norm': '1.513', 'learning_rate': '0.0001225', 'epoch': '1.219'}
+{'loss': '2.847', 'grad_norm': '0.9728', 'learning_rate': '0.0001218', 'epoch': '1.23'}
+{'loss': '2.85', 'grad_norm': '1.498', 'learning_rate': '0.000121', 'epoch': '1.241'}
+{'loss': '2.802', 'grad_norm': '0.7734', 'learning_rate': '0.0001203', 'epoch': '1.252'}
+{'loss': '2.726', 'grad_norm': '1.163', 'learning_rate': '0.0001196', 'epoch': '1.262'}
+{'loss': '2.877', 'grad_norm': '1.442', 'learning_rate': '0.0001188', 'epoch': '1.273'}
+{'loss': '2.718', 'grad_norm': '0.9974', 'learning_rate': '0.0001181', 'epoch': '1.284'}
+Unsloth: Preserved sentencepiece asset `tokenizer.model` in results/checkpoints/gsm8k-lora/checkpoint-1200.
+ 46%|██████████████████████████████████████████████████████▋                                                               | 1300/2805 [58:57<1:09:04,  2.75s/it]Unsloth: Restored added_tokens_decoder metadata in results/checkpoints/gsm8k-lora/checkpoint-1300/tokenizer_config.json.
+{'loss': '2.75', 'grad_norm': '1.149', 'learning_rate': '0.0001174', 'epoch': '1.294'}
+{'loss': '2.744', 'grad_norm': '1.024', 'learning_rate': '0.0001166', 'epoch': '1.305'}
+{'loss': '2.885', 'grad_norm': '1.011', 'learning_rate': '0.0001159', 'epoch': '1.316'}
+{'loss': '2.754', 'grad_norm': '0.8516', 'learning_rate': '0.0001151', 'epoch': '1.326'}
+{'loss': '2.775', 'grad_norm': '1.491', 'learning_rate': '0.0001144', 'epoch': '1.337'}
+{'loss': '2.774', 'grad_norm': '0.9365', 'learning_rate': '0.0001137', 'epoch': '1.348'}
+{'loss': '2.811', 'grad_norm': '1.157', 'learning_rate': '0.0001129', 'epoch': '1.359'}
+{'loss': '2.778', 'grad_norm': '1.397', 'learning_rate': '0.0001122', 'epoch': '1.369'}
+{'loss': '2.778', 'grad_norm': '0.8528', 'learning_rate': '0.0001115', 'epoch': '1.38'}
+{'loss': '2.714', 'grad_norm': '1.135', 'learning_rate': '0.0001107', 'epoch': '1.391'}
+Unsloth: Preserved sentencepiece asset `tokenizer.model` in results/checkpoints/gsm8k-lora/checkpoint-1300.
+ 50%|█████████████████████████████████████████████████████████▉                                                          | 1400/2805 [1:03:19<1:05:15,  2.79s/it]Unsloth: Restored added_tokens_decoder metadata in results/checkpoints/gsm8k-lora/checkpoint-1400/tokenizer_config.json.
+{'loss': '2.739', 'grad_norm': '1.334', 'learning_rate': '0.00011', 'epoch': '1.401'}
+{'loss': '2.766', 'grad_norm': '1.3', 'learning_rate': '0.0001093', 'epoch': '1.412'}
+{'loss': '2.727', 'grad_norm': '1.016', 'learning_rate': '0.0001085', 'epoch': '1.423'}
+{'loss': '2.653', 'grad_norm': '0.9587', 'learning_rate': '0.0001078', 'epoch': '1.434'}
+{'loss': '2.71', 'grad_norm': '1.499', 'learning_rate': '0.0001071', 'epoch': '1.444'}
+{'loss': '2.738', 'grad_norm': '0.9517', 'learning_rate': '0.0001063', 'epoch': '1.455'}
+{'loss': '2.748', 'grad_norm': '1.28', 'learning_rate': '0.0001056', 'epoch': '1.466'}
+{'loss': '2.729', 'grad_norm': '1.401', 'learning_rate': '0.0001049', 'epoch': '1.476'}
+{'loss': '2.733', 'grad_norm': '1.057', 'learning_rate': '0.0001041', 'epoch': '1.487'}
+{'loss': '2.652', 'grad_norm': '1.722', 'learning_rate': '0.0001034', 'epoch': '1.498'}
+Unsloth: Preserved sentencepiece asset `tokenizer.model` in results/checkpoints/gsm8k-lora/checkpoint-1400.
+ 53%|███████████████████████████████████████████████████████████████                                                       | 1500/2805 [1:07:39<55:46,  2.56s/it]Unsloth: Restored added_tokens_decoder metadata in results/checkpoints/gsm8k-lora/checkpoint-1500/tokenizer_config.json.
+{'loss': '2.783', 'grad_norm': '1.144', 'learning_rate': '0.0001026', 'epoch': '1.508'}
+{'loss': '2.732', 'grad_norm': '1.03', 'learning_rate': '0.0001019', 'epoch': '1.519'}
+{'loss': '2.632', 'grad_norm': '1.108', 'learning_rate': '0.0001012', 'epoch': '1.53'}
+{'loss': '2.685', 'grad_norm': '1.12', 'learning_rate': '0.0001004', 'epoch': '1.541'}
+{'loss': '2.717', 'grad_norm': '1.341', 'learning_rate': '9.971e-05', 'epoch': '1.551'}
+{'loss': '2.654', 'grad_norm': '1.468', 'learning_rate': '9.897e-05', 'epoch': '1.562'}
+{'loss': '2.634', 'grad_norm': '1.37', 'learning_rate': '9.824e-05', 'epoch': '1.573'}
+{'loss': '2.677', 'grad_norm': '1.496', 'learning_rate': '9.75e-05', 'epoch': '1.583'}
+{'loss': '2.705', 'grad_norm': '1.179', 'learning_rate': '9.676e-05', 'epoch': '1.594'}
+{'loss': '2.637', 'grad_norm': '1.311', 'learning_rate': '9.603e-05', 'epoch': '1.605'}
+Unsloth: Preserved sentencepiece asset `tokenizer.model` in results/checkpoints/gsm8k-lora/checkpoint-1500.
+ 57%|███████████████████████████████████████████████████████████████████▎                                                  | 1600/2805 [1:12:04<57:15,  2.85s/it]Unsloth: Restored added_tokens_decoder metadata in results/checkpoints/gsm8k-lora/checkpoint-1600/tokenizer_config.json.
+{'loss': '2.667', 'grad_norm': '1.241', 'learning_rate': '9.529e-05', 'epoch': '1.615'}
+{'loss': '2.606', 'grad_norm': '1.186', 'learning_rate': '9.456e-05', 'epoch': '1.626'}
+{'loss': '2.667', 'grad_norm': '1.348', 'learning_rate': '9.382e-05', 'epoch': '1.637'}
+{'loss': '2.624', 'grad_norm': '1.026', 'learning_rate': '9.309e-05', 'epoch': '1.648'}
+{'loss': '2.664', 'grad_norm': '1.325', 'learning_rate': '9.235e-05', 'epoch': '1.658'}
+{'loss': '2.601', 'grad_norm': '1.949', 'learning_rate': '9.162e-05', 'epoch': '1.669'}
+{'loss': '2.789', 'grad_norm': '1.419', 'learning_rate': '9.088e-05', 'epoch': '1.68'}
+{'loss': '2.645', 'grad_norm': '1.579', 'learning_rate': '9.015e-05', 'epoch': '1.69'}
+{'loss': '2.703', 'grad_norm': '1.22', 'learning_rate': '8.941e-05', 'epoch': '1.701'}
+{'loss': '2.741', 'grad_norm': '2.012', 'learning_rate': '8.868e-05', 'epoch': '1.712'}
+Unsloth: Preserved sentencepiece asset `tokenizer.model` in results/checkpoints/gsm8k-lora/checkpoint-1600.
+ 61%|███████████████████████████████████████████████████████████████████████▌                                              | 1700/2805 [1:16:23<44:41,  2.43s/it]Unsloth: Restored added_tokens_decoder metadata in results/checkpoints/gsm8k-lora/checkpoint-1700/tokenizer_config.json.
+{'loss': '2.673', 'grad_norm': '1.56', 'learning_rate': '8.794e-05', 'epoch': '1.723'}
+{'loss': '2.675', 'grad_norm': '2.38', 'learning_rate': '8.721e-05', 'epoch': '1.733'}
+{'loss': '2.615', 'grad_norm': '2.071', 'learning_rate': '8.647e-05', 'epoch': '1.744'}
+{'loss': '2.573', 'grad_norm': '1.133', 'learning_rate': '8.574e-05', 'epoch': '1.755'}
+{'loss': '2.613', 'grad_norm': '1.69', 'learning_rate': '8.5e-05', 'epoch': '1.765'}
+{'loss': '2.559', 'grad_norm': '2.194', 'learning_rate': '8.426e-05', 'epoch': '1.776'}
+{'loss': '2.643', 'grad_norm': '1.074', 'learning_rate': '8.353e-05', 'epoch': '1.787'}
+{'loss': '2.567', 'grad_norm': '1.379', 'learning_rate': '8.279e-05', 'epoch': '1.797'}
+{'loss': '2.633', 'grad_norm': '1.581', 'learning_rate': '8.206e-05', 'epoch': '1.808'}
+{'loss': '2.597', 'grad_norm': '1.172', 'learning_rate': '8.132e-05', 'epoch': '1.819'}
+Unsloth: Preserved sentencepiece asset `tokenizer.model` in results/checkpoints/gsm8k-lora/checkpoint-1700.
+ 64%|███████████████████████████████████████████████████████████████████████████▋                                          | 1800/2805 [1:20:49<44:35,  2.66s/it]Unsloth: Restored added_tokens_decoder metadata in results/checkpoints/gsm8k-lora/checkpoint-1800/tokenizer_config.json.
+{'loss': '2.671', 'grad_norm': '1.077', 'learning_rate': '8.059e-05', 'epoch': '1.83'}
+{'loss': '2.563', 'grad_norm': '1.252', 'learning_rate': '7.985e-05', 'epoch': '1.84'}
+{'loss': '2.721', 'grad_norm': '1.159', 'learning_rate': '7.912e-05', 'epoch': '1.851'}
+{'loss': '2.66', 'grad_norm': '0.9625', 'learning_rate': '7.838e-05', 'epoch': '1.862'}
+{'loss': '2.579', 'grad_norm': '1.145', 'learning_rate': '7.765e-05', 'epoch': '1.872'}
+{'loss': '2.523', 'grad_norm': '1.37', 'learning_rate': '7.691e-05', 'epoch': '1.883'}
+{'loss': '2.692', 'grad_norm': '1.015', 'learning_rate': '7.618e-05', 'epoch': '1.894'}
+{'loss': '2.594', 'grad_norm': '2.148', 'learning_rate': '7.544e-05', 'epoch': '1.904'}
+{'loss': '2.52', 'grad_norm': '1.625', 'learning_rate': '7.471e-05', 'epoch': '1.915'}
+{'loss': '2.664', 'grad_norm': '1.438', 'learning_rate': '7.397e-05', 'epoch': '1.926'}
+Unsloth: Preserved sentencepiece asset `tokenizer.model` in results/checkpoints/gsm8k-lora/checkpoint-1800.
+ 68%|███████████████████████████████████████████████████████████████████████████████▉                                      | 1900/2805 [1:25:13<39:47,  2.64s/it]Unsloth: Restored added_tokens_decoder metadata in results/checkpoints/gsm8k-lora/checkpoint-1900/tokenizer_config.json.
+{'loss': '2.517', 'grad_norm': '1.43', 'learning_rate': '7.324e-05', 'epoch': '1.937'}
+{'loss': '2.587', 'grad_norm': '1.445', 'learning_rate': '7.25e-05', 'epoch': '1.947'}
+{'loss': '2.558', 'grad_norm': '1.23', 'learning_rate': '7.176e-05', 'epoch': '1.958'}
+{'loss': '2.63', 'grad_norm': '1.772', 'learning_rate': '7.103e-05', 'epoch': '1.969'}
+{'loss': '2.704', 'grad_norm': '1.344', 'learning_rate': '7.029e-05', 'epoch': '1.979'}
+{'loss': '2.683', 'grad_norm': '1.734', 'learning_rate': '6.956e-05', 'epoch': '1.99'}
+{'loss': '2.622', 'grad_norm': '3.297', 'learning_rate': '6.882e-05', 'epoch': '2'}
+{'loss': '2.517', 'grad_norm': '1.501', 'learning_rate': '6.809e-05', 'epoch': '2.011'}
+{'loss': '2.564', 'grad_norm': '1.227', 'learning_rate': '6.735e-05', 'epoch': '2.021'}
+{'loss': '2.587', 'grad_norm': '1.206', 'learning_rate': '6.662e-05', 'epoch': '2.032'}
+Unsloth: Preserved sentencepiece asset `tokenizer.model` in results/checkpoints/gsm8k-lora/checkpoint-1900.
+ 71%|████████████████████████████████████████████████████████████████████████████████████▏                                 | 2000/2805 [1:29:35<33:51,  2.52s/it]Unsloth: Restored added_tokens_decoder metadata in results/checkpoints/gsm8k-lora/checkpoint-2000/tokenizer_config.json.
+{'loss': '2.505', 'grad_norm': '1.312', 'learning_rate': '6.588e-05', 'epoch': '2.043'}
+{'loss': '2.487', 'grad_norm': '1.464', 'learning_rate': '6.515e-05', 'epoch': '2.054'}
+{'loss': '2.5', 'grad_norm': '1.48', 'learning_rate': '6.441e-05', 'epoch': '2.064'}
+{'loss': '2.531', 'grad_norm': '1.243', 'learning_rate': '6.368e-05', 'epoch': '2.075'}
+{'loss': '2.64', 'grad_norm': '1.104', 'learning_rate': '6.294e-05', 'epoch': '2.086'}
+{'loss': '2.503', 'grad_norm': '1.128', 'learning_rate': '6.221e-05', 'epoch': '2.096'}
+{'loss': '2.496', 'grad_norm': '1.108', 'learning_rate': '6.147e-05', 'epoch': '2.107'}
+{'loss': '2.517', 'grad_norm': '1.765', 'learning_rate': '6.074e-05', 'epoch': '2.118'}
+{'loss': '2.555', 'grad_norm': '1.31', 'learning_rate': '6e-05', 'epoch': '2.128'}
+{'loss': '2.56', 'grad_norm': '1.093', 'learning_rate': '5.926e-05', 'epoch': '2.139'}
+Unsloth: Preserved sentencepiece asset `tokenizer.model` in results/checkpoints/gsm8k-lora/checkpoint-2000.
+ 75%|████████████████████████████████████████████████████████████████████████████████████████▎                             | 2100/2805 [1:34:02<32:19,  2.75s/it]Unsloth: Restored added_tokens_decoder metadata in results/checkpoints/gsm8k-lora/checkpoint-2100/tokenizer_config.json.
+{'loss': '2.517', 'grad_norm': '1.487', 'learning_rate': '5.853e-05', 'epoch': '2.15'}
+{'loss': '2.495', 'grad_norm': '1.302', 'learning_rate': '5.779e-05', 'epoch': '2.161'}
+{'loss': '2.467', 'grad_norm': '1.373', 'learning_rate': '5.706e-05', 'epoch': '2.171'}
+{'loss': '2.465', 'grad_norm': '1.551', 'learning_rate': '5.632e-05', 'epoch': '2.182'}
+{'loss': '2.512', 'grad_norm': '1.264', 'learning_rate': '5.559e-05', 'epoch': '2.193'}
+{'loss': '2.527', 'grad_norm': '1.241', 'learning_rate': '5.485e-05', 'epoch': '2.203'}
+{'loss': '2.624', 'grad_norm': '2.497', 'learning_rate': '5.412e-05', 'epoch': '2.214'}
+{'loss': '2.476', 'grad_norm': '1.366', 'learning_rate': '5.338e-05', 'epoch': '2.225'}
+{'loss': '2.535', 'grad_norm': '1.205', 'learning_rate': '5.265e-05', 'epoch': '2.235'}
+{'loss': '2.494', 'grad_norm': '1.572', 'learning_rate': '5.191e-05', 'epoch': '2.246'}
+Unsloth: Preserved sentencepiece asset `tokenizer.model` in results/checkpoints/gsm8k-lora/checkpoint-2100.
+ 78%|████████████████████████████████████████████████████████████████████████████████████████████▌                         | 2200/2805 [1:38:23<26:37,  2.64s/it]Unsloth: Restored added_tokens_decoder metadata in results/checkpoints/gsm8k-lora/checkpoint-2200/tokenizer_config.json.
+{'loss': '2.492', 'grad_norm': '1.586', 'learning_rate': '5.118e-05', 'epoch': '2.257'}
+{'loss': '2.586', 'grad_norm': '1.592', 'learning_rate': '5.044e-05', 'epoch': '2.268'}
+{'loss': '2.515', 'grad_norm': '1.563', 'learning_rate': '4.971e-05', 'epoch': '2.278'}
+{'loss': '2.434', 'grad_norm': '1.173', 'learning_rate': '4.897e-05', 'epoch': '2.289'}
+{'loss': '2.458', 'grad_norm': '1.868', 'learning_rate': '4.824e-05', 'epoch': '2.3'}
+{'loss': '2.484', 'grad_norm': '1.492', 'learning_rate': '4.75e-05', 'epoch': '2.31'}
+{'loss': '2.526', 'grad_norm': '1.154', 'learning_rate': '4.676e-05', 'epoch': '2.321'}
+{'loss': '2.548', 'grad_norm': '1.225', 'learning_rate': '4.603e-05', 'epoch': '2.332'}
+{'loss': '2.5', 'grad_norm': '1.599', 'learning_rate': '4.529e-05', 'epoch': '2.343'}
+{'loss': '2.593', 'grad_norm': '1.825', 'learning_rate': '4.456e-05', 'epoch': '2.353'}
+Unsloth: Preserved sentencepiece asset `tokenizer.model` in results/checkpoints/gsm8k-lora/checkpoint-2200.
+ 82%|████████████████████████████████████████████████████████████████████████████████████████████████▊                     | 2300/2805 [1:43:00<28:09,  3.35s/it]Unsloth: Restored added_tokens_decoder metadata in results/checkpoints/gsm8k-lora/checkpoint-2300/tokenizer_config.json.
+{'loss': '2.539', 'grad_norm': '1.623', 'learning_rate': '4.382e-05', 'epoch': '2.364'}
+{'loss': '2.495', 'grad_norm': '1.869', 'learning_rate': '4.309e-05', 'epoch': '2.375'}
+{'loss': '2.541', 'grad_norm': '1.569', 'learning_rate': '4.235e-05', 'epoch': '2.385'}
+{'loss': '2.44', 'grad_norm': '1.185', 'learning_rate': '4.162e-05', 'epoch': '2.396'}
+{'loss': '2.504', 'grad_norm': '1.442', 'learning_rate': '4.088e-05', 'epoch': '2.407'}
+{'loss': '2.432', 'grad_norm': '1.158', 'learning_rate': '4.015e-05', 'epoch': '2.417'}
+{'loss': '2.492', 'grad_norm': '1.223', 'learning_rate': '3.941e-05', 'epoch': '2.428'}
+{'loss': '2.438', 'grad_norm': '1.257', 'learning_rate': '3.868e-05', 'epoch': '2.439'}
+{'loss': '2.494', 'grad_norm': '1.458', 'learning_rate': '3.794e-05', 'epoch': '2.45'}
+{'loss': '2.524', 'grad_norm': '1.649', 'learning_rate': '3.721e-05', 'epoch': '2.46'}
+Unsloth: Preserved sentencepiece asset `tokenizer.model` in results/checkpoints/gsm8k-lora/checkpoint-2300.
+ 86%|████████████████████████████████████████████████████████████████████████████████████████████████████                 | 2400/2805 [1:47:33<18:42,  2.77s/it]Unsloth: Restored added_tokens_decoder metadata in results/checkpoints/gsm8k-lora/checkpoint-2400/tokenizer_config.json.
+{'loss': '2.475', 'grad_norm': '1.357', 'learning_rate': '3.647e-05', 'epoch': '2.471'}
+{'loss': '2.512', 'grad_norm': '1.228', 'learning_rate': '3.574e-05', 'epoch': '2.482'}
+{'loss': '2.449', 'grad_norm': '1.827', 'learning_rate': '3.5e-05', 'epoch': '2.492'}
+{'loss': '2.449', 'grad_norm': '1.287', 'learning_rate': '3.426e-05', 'epoch': '2.503'}
+{'loss': '2.387', 'grad_norm': '1.282', 'learning_rate': '3.353e-05', 'epoch': '2.514'}
+{'loss': '2.358', 'grad_norm': '1.403', 'learning_rate': '3.279e-05', 'epoch': '2.524'}
+{'loss': '2.493', 'grad_norm': '1.225', 'learning_rate': '3.206e-05', 'epoch': '2.535'}
+{'loss': '2.445', 'grad_norm': '1.143', 'learning_rate': '3.132e-05', 'epoch': '2.546'}
+{'loss': '2.443', 'grad_norm': '1.447', 'learning_rate': '3.059e-05', 'epoch': '2.557'}
+{'loss': '2.48', 'grad_norm': '1.626', 'learning_rate': '2.985e-05', 'epoch': '2.567'}
+Unsloth: Preserved sentencepiece asset `tokenizer.model` in results/checkpoints/gsm8k-lora/checkpoint-2400.
+ 89%|████████████████████████████████████████████████████████████████████████████████████████████████████████▎            | 2500/2805 [1:51:51<13:51,  2.73s/it]Unsloth: Restored added_tokens_decoder metadata in results/checkpoints/gsm8k-lora/checkpoint-2500/tokenizer_config.json.
+{'loss': '2.472', 'grad_norm': '1.278', 'learning_rate': '2.912e-05', 'epoch': '2.578'}
+{'loss': '2.395', 'grad_norm': '1.372', 'learning_rate': '2.838e-05', 'epoch': '2.589'}
+{'loss': '2.489', 'grad_norm': '1.245', 'learning_rate': '2.765e-05', 'epoch': '2.599'}
+{'loss': '2.47', 'grad_norm': '1.219', 'learning_rate': '2.691e-05', 'epoch': '2.61'}
+{'loss': '2.441', 'grad_norm': '1.588', 'learning_rate': '2.618e-05', 'epoch': '2.621'}
+{'loss': '2.41', 'grad_norm': '2.304', 'learning_rate': '2.544e-05', 'epoch': '2.632'}
+{'loss': '2.485', 'grad_norm': '1.326', 'learning_rate': '2.471e-05', 'epoch': '2.642'}
+{'loss': '2.5', 'grad_norm': '1.46', 'learning_rate': '2.397e-05', 'epoch': '2.653'}
+{'loss': '2.313', 'grad_norm': '1.306', 'learning_rate': '2.324e-05', 'epoch': '2.664'}
+{'loss': '2.495', 'grad_norm': '1.499', 'learning_rate': '2.25e-05', 'epoch': '2.674'}
+Unsloth: Preserved sentencepiece asset `tokenizer.model` in results/checkpoints/gsm8k-lora/checkpoint-2500.
+ 93%|████████████████████████████████████████████████████████████████████████████████████████████████████████████▍        | 2600/2805 [1:56:15<08:22,  2.45s/it]Unsloth: Restored added_tokens_decoder metadata in results/checkpoints/gsm8k-lora/checkpoint-2600/tokenizer_config.json.
+{'loss': '2.525', 'grad_norm': '1.34', 'learning_rate': '2.176e-05', 'epoch': '2.685'}
+{'loss': '2.463', 'grad_norm': '1.586', 'learning_rate': '2.103e-05', 'epoch': '2.696'}
+{'loss': '2.41', 'grad_norm': '1.202', 'learning_rate': '2.029e-05', 'epoch': '2.706'}
+{'loss': '2.421', 'grad_norm': '1.371', 'learning_rate': '1.956e-05', 'epoch': '2.717'}
+{'loss': '2.482', 'grad_norm': '1.481', 'learning_rate': '1.882e-05', 'epoch': '2.728'}
+{'loss': '2.418', 'grad_norm': '1.71', 'learning_rate': '1.809e-05', 'epoch': '2.739'}
+{'loss': '2.459', 'grad_norm': '1.261', 'learning_rate': '1.735e-05', 'epoch': '2.749'}
+{'loss': '2.483', 'grad_norm': '1.824', 'learning_rate': '1.662e-05', 'epoch': '2.76'}
+{'loss': '2.464', 'grad_norm': '1.4', 'learning_rate': '1.588e-05', 'epoch': '2.771'}
+{'loss': '2.41', 'grad_norm': '1.289', 'learning_rate': '1.515e-05', 'epoch': '2.781'}
+Unsloth: Preserved sentencepiece asset `tokenizer.model` in results/checkpoints/gsm8k-lora/checkpoint-2600.
+ 96%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████▌    | 2700/2805 [2:00:38<04:46,  2.73s/it]Unsloth: Restored added_tokens_decoder metadata in results/checkpoints/gsm8k-lora/checkpoint-2700/tokenizer_config.json.
+{'loss': '2.4', 'grad_norm': '1.356', 'learning_rate': '1.441e-05', 'epoch': '2.792'}
+{'loss': '2.38', 'grad_norm': '1.389', 'learning_rate': '1.368e-05', 'epoch': '2.803'}
+{'loss': '2.403', 'grad_norm': '1.495', 'learning_rate': '1.294e-05', 'epoch': '2.813'}
+{'loss': '2.414', 'grad_norm': '1.244', 'learning_rate': '1.221e-05', 'epoch': '2.824'}
+{'loss': '2.476', 'grad_norm': '1.216', 'learning_rate': '1.147e-05', 'epoch': '2.835'}
+{'loss': '2.44', 'grad_norm': '1.184', 'learning_rate': '1.074e-05', 'epoch': '2.846'}
+{'loss': '2.413', 'grad_norm': '1.204', 'learning_rate': '1e-05', 'epoch': '2.856'}
+{'loss': '2.365', 'grad_norm': '1.393', 'learning_rate': '9.265e-06', 'epoch': '2.867'}
+{'loss': '2.412', 'grad_norm': '1.158', 'learning_rate': '8.529e-06', 'epoch': '2.878'}
+{'loss': '2.454', 'grad_norm': '3.399', 'learning_rate': '7.794e-06', 'epoch': '2.888'}
+Unsloth: Preserved sentencepiece asset `tokenizer.model` in results/checkpoints/gsm8k-lora/checkpoint-2700.
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████▊| 2800/2805 [2:05:05<00:13,  2.69s/it]Unsloth: Restored added_tokens_decoder metadata in results/checkpoints/gsm8k-lora/checkpoint-2800/tokenizer_config.json.
+{'loss': '2.439', 'grad_norm': '1.402', 'learning_rate': '7.059e-06', 'epoch': '2.899'}
+{'loss': '2.55', 'grad_norm': '1.468', 'learning_rate': '6.324e-06', 'epoch': '2.91'}
+{'loss': '2.364', 'grad_norm': '1.081', 'learning_rate': '5.588e-06', 'epoch': '2.921'}
+{'loss': '2.445', 'grad_norm': '1.234', 'learning_rate': '4.853e-06', 'epoch': '2.931'}
+{'loss': '2.417', 'grad_norm': '1.154', 'learning_rate': '4.118e-06', 'epoch': '2.942'}
+{'loss': '2.446', 'grad_norm': '1.131', 'learning_rate': '3.382e-06', 'epoch': '2.953'}
+{'loss': '2.409', 'grad_norm': '1.537', 'learning_rate': '2.647e-06', 'epoch': '2.963'}
+{'loss': '2.5', 'grad_norm': '1.215', 'learning_rate': '1.912e-06', 'epoch': '2.974'}
+{'loss': '2.411', 'grad_norm': '1.144', 'learning_rate': '1.176e-06', 'epoch': '2.985'}
+{'loss': '2.517', 'grad_norm': '1.323', 'learning_rate': '4.412e-07', 'epoch': '2.995'}
+Unsloth: Preserved sentencepiece asset `tokenizer.model` in results/checkpoints/gsm8k-lora/checkpoint-2800.
+100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 2805/2805 [2:05:17<00:00,  2.29s/it]Unsloth: Restored added_tokens_decoder metadata in results/checkpoints/gsm8k-lora/checkpoint-2805/tokenizer_config.json.
+Unsloth: Preserved sentencepiece asset `tokenizer.model` in results/checkpoints/gsm8k-lora/checkpoint-2805.
+100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 2805/2805 [2:05:19<00:00,  2.68s/it]
+{'train_runtime': '7519', 'train_samples_per_second': '2.982', 'train_steps_per_second': '0.373', 'train_loss': '3.243', 'epoch': '3'}
+Unsloth: Restored added_tokens_decoder metadata in results/checkpoints/gsm8k-lora/final_adapter/tokenizer_config.json.
+Unsloth: Preserved sentencepiece asset `tokenizer.model` in results/checkpoints/gsm8k-lora/final_adapter.
+Training complete. Final adapter saved to: results/checkpoints/gsm8k-lora/final_adapter

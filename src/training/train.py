@@ -4,7 +4,6 @@ Fine-tuning via Unsloth + trl's SFTTrainer.
 Built specifically to survive Lightning AI's 4-hour Studio restarts (and
 Kaggle's 9-hour session limits): if output_dir already contains a checkpoint
 when this runs, we resume from it automatically instead of starting over.
-This is what makes "run it, get interrupted, run it again" actually work.
 """
 
 from pathlib import Path
@@ -24,21 +23,19 @@ def find_latest_checkpoint(output_dir: str) -> str | None:
 
 def train(model_config: dict, training_config: dict):
     """
-    Runs (or resumes) a LoRA fine-tune. Call this from a script — kept as a
-    plain function, not a CLI, so it's importable and testable elsewhere.
+    Runs (or resumes) a LoRA fine-tune.
     """
-    from unsloth import FastLanguageModel
+    from unsloth import FastLanguageModel, get_chat_template
     from trl import SFTTrainer, SFTConfig
     import wandb
 
-    from src.data.loader import load_cot_dataset
+    from src.data.loader import load_gsm8k
     from src.data.preprocess import preprocess_dataset
 
     t_cfg = training_config["training"]
     w_cfg = training_config["wandb"]
     d_cfg = training_config["dataset"]
 
-    # --- resume detection: the whole point of this module ---
     resume_ckpt = None
     if t_cfg.get("resume_from_checkpoint") == "auto":
         resume_ckpt = find_latest_checkpoint(t_cfg["output_dir"])
@@ -56,6 +53,9 @@ def train(model_config: dict, training_config: dict):
         dtype=None,
     )
 
+    # Assign the Gemma chat template to the tokenizer so apply_chat_template works
+    tokenizer = get_chat_template(tokenizer, chat_template="gemma")
+
     lora_cfg = model_config["lora"]
     model = FastLanguageModel.get_peft_model(
         model,
@@ -67,8 +67,7 @@ def train(model_config: dict, training_config: dict):
         use_gradient_checkpointing="unsloth",
     )
 
-    # Ingest from the generalized CoT dataset loader using config parameters
-    raw_ds = load_cot_dataset(dataset_name=d_cfg["name"], split=d_cfg["split"])
+    raw_ds = load_gsm8k(split=d_cfg["split"])
     train_ds = preprocess_dataset(raw_ds, tokenizer)
 
     args = SFTConfig(
@@ -92,7 +91,6 @@ def train(model_config: dict, training_config: dict):
 
     trainer.train(resume_from_checkpoint=resume_ckpt)
 
-    # Save the final adapter explicitly (not just the last checkpoint dir)
     final_path = f"{t_cfg['output_dir']}/final_adapter"
     model.save_pretrained(final_path)
     tokenizer.save_pretrained(final_path)
