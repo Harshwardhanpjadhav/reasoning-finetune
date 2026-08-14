@@ -1,7 +1,4 @@
-# Training config — tuned for a single free-tier T4 (Lightning Studio or Kaggle)
-# Checkpointing is frequent by design: Lightning Studios restart every 4 hours,
-# so a run must be resumable from the last saved step without babysitting it.
-
+# Training config — tuned for a single free-tier T4
 dataset:
   name: "gsm8k"
   subset: "main"
@@ -9,7 +6,7 @@ dataset:
   max_seq_length: 1024   # CoT traces are long; keep this modest to stay fast on a T4
 
 training:
-  output_dir: "results/checkpoints/gsm8k-lora"   # must live on PERSISTENT storage
+  output_dir: "results/checkpoints/gsm8k-lora"
   num_train_epochs: 3
   per_device_train_batch_size: 2
   gradient_accumulation_steps: 4
@@ -17,12 +14,11 @@ training:
   warmup_ratio: 0.03
   logging_steps: 10
   save_strategy: "steps"
-  save_steps: 100          # frequent saves -> safe to resume after a 4hr restart
-  save_total_limit: 3       # keep only last 3 checkpoints, don't fill persistent storage
-  resume_from_checkpoint: "auto"  # our train.py checks output_dir for the latest checkpoint
+  save_steps: 100
+  save_total_limit: 3
+  resume_from_checkpoint: "auto"
 
 wandb:
   project: "reasoning-finetune"
-  run_name: "qwen2.5-7b-gsm8k-lora"
-  # tags help you filter runs later: base vs LoRA vs different hyperparams
-  tags: ["qwen2.5-7b", "lora", "gsm8k", "unsloth"]
+  run_name: "gemma-2-2b-bnb-4bit-lora-CoT-gsm8k"
+  tags: ["gemma-2-2b-bnb-4bit", "lora", "gsm8k", "unsloth"]

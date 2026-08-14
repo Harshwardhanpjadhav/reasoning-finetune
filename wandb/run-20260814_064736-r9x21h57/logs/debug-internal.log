@@ -1,0 +1,19 @@
+{"time":"2026-08-14T06:47:36.207224767Z","level":"INFO","msg":"wandb-core"}
+{"time":"2026-08-14T06:47:36.209569924Z","level":"INFO","msg":"stream: starting","core version":"0.28.2"}
+{"time":"2026-08-14T06:47:36.319269344Z","level":"INFO","msg":"stream: created new stream","id":"r9x21h57"}
+{"time":"2026-08-14T06:47:36.319560467Z","level":"INFO","msg":"handler: started"}
+{"time":"2026-08-14T06:47:36.319964653Z","level":"INFO","msg":"stream: started"}
+{"time":"2026-08-14T06:47:36.321059124Z","level":"INFO","msg":"sender: started"}
+{"time":"2026-08-14T06:47:36.32105826Z","level":"INFO","msg":"writer: started","stream_id":"r9x21h57"}
+{"time":"2026-08-14T06:47:37.109140936Z","level":"INFO","msg":"filestream: sending request","total_files":1,"console_offset":0,"console_lines":1}
+{"time":"2026-08-14T06:47:37.206874405Z","level":"INFO","msg":"filestream: request sent","status":"200 OK"}
+{"time":"2026-08-14T06:47:52.10919402Z","level":"INFO","msg":"filestream: sending request","total_files":2,"events_offset":0,"events_lines":2,"console_offset":1,"console_lines":9,"uploaded_len":2}
+{"time":"2026-08-14T06:47:52.297786375Z","level":"INFO","msg":"filestream: request sent","status":"200 OK"}
+{"time":"2026-08-14T06:48:01.75317552Z","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2026-08-14T06:48:01.753379542Z","level":"INFO","msg":"filestream: sending request","total_files":2,"console_offset":10,"console_lines":23,"uploaded_len":3,"complete":true,"exit_code":1}
+{"time":"2026-08-14T06:48:01.895769263Z","level":"INFO","msg":"filestream: request sent","status":"200 OK"}
+{"time":"2026-08-14T06:48:01.895947734Z","level":"INFO","msg":"stream: finishing up"}
+{"time":"2026-08-14T06:48:01.895985465Z","level":"INFO","msg":"handler: closed"}
+{"time":"2026-08-14T06:48:01.896093783Z","level":"INFO","msg":"sender: closed"}
+{"time":"2026-08-14T06:48:01.896112892Z","level":"INFO","msg":"stream: all finished"}
+{"time":"2026-08-14T06:48:03.896513138Z","level":"ERROR","msg":"stream: failed to shut down analytics","error":"shutdown errors: [context deadline exceeded]"}

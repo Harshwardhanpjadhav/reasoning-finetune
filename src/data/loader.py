@@ -21,7 +21,7 @@ def load_gsm8k(split: str = "train", limit: int | None = None):
     """
     from datasets import load_dataset
 
-    ds = load_dataset("gsm8k", "main", split=split)
+    ds = load_dataset("openai/gsm8k", "main", split=split)
     if limit:
         ds = ds.select(range(min(limit, len(ds))))
     return ds

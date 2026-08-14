@@ -1,16 +1,3 @@
-"""
-Run GSM8K eval. Usage on Lightning Studio (after pip install -r requirements.txt):
-
-    # Baseline (before fine-tuning)
-    python scripts/run_eval.py --tag baseline
-
-    # After fine-tuning
-    python scripts/run_eval.py --tag post-finetune --adapter results/checkpoints/gsm8k-lora/final_adapter
-
-    # Quick smoke test with a tiny model first
-    python scripts/run_eval.py --tag smoke --model unsloth/Qwen2.5-0.5B-Instruct --limit 5
-"""
-
 import argparse
 import sys
 from pathlib import Path
@@ -18,10 +5,11 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
 from src.config import load_config
-from src.eval.gsm8k_eval import run_eval
+from src.eval.eval import run_eval
 
 
 def main():
+    # Reverted back to the 'gsm8k' configuration block
     cfg = load_config("eval")["gsm8k"]
     model_cfg = load_config("model")
 
@@ -40,6 +28,7 @@ def main():
         max_new_tokens=cfg["max_new_tokens"],
         load_in_4bit=model_cfg["load_in_4bit"],
         tag=args.tag,
+        is_base_model=model_cfg.get("is_base_model", False),
     )
 
 

@@ -17,14 +17,24 @@ RESULTS_DIR = Path(__file__).resolve().parent.parent.parent / "results"
 def _load_model(base_model: str, adapter_path: str | None, load_in_4bit: bool):
     """Loads model + tokenizer, optionally with a LoRA adapter attached."""
     import torch
-    from transformers import AutoModelForCausalLM, AutoTokenizer
+    from transformers import AutoModelForCausalLM, AutoTokenizer, BitsAndBytesConfig
 
     tokenizer = AutoTokenizer.from_pretrained(base_model)
+
+    quantization_config = None
+    if load_in_4bit and torch.cuda.is_available():
+        quantization_config = BitsAndBytesConfig(
+            load_in_4bit=True,
+            bnb_4bit_quant_type="nf4",
+            bnb_4bit_compute_dtype=torch.float16,
+            bnb_4bit_use_double_quant=True,
+        )
+
     model = AutoModelForCausalLM.from_pretrained(
         base_model,
-        torch_dtype=torch.float16 if torch.cuda.is_available() else torch.float32,
+        dtype=torch.float16 if torch.cuda.is_available() else torch.float32,
         device_map="auto" if torch.cuda.is_available() else None,
-        load_in_4bit=load_in_4bit,
+        quantization_config=quantization_config,
     )
     if adapter_path:
         from peft import PeftModel
@@ -34,20 +44,31 @@ def _load_model(base_model: str, adapter_path: str | None, load_in_4bit: bool):
     return model, tokenizer
 
 
-def _generate(model, tokenizer, question: str, instruction: str, max_new_tokens: int) -> str:
+def _generate(model, tokenizer, question: str, instruction: str, max_new_tokens: int,
+               is_base_model: bool = False) -> str:
     import torch
+    from src.tracing.langfuse_client import trace_generation
 
-    messages = [{"role": "user", "content": f"{instruction}\n\nProblem: {question}"}]
-    inputs = tokenizer.apply_chat_template(
-        messages, add_generation_prompt=True, return_tensors="pt"
-    ).to(model.device)
+    with trace_generation("gsm8k_eval_generation", input_text=question) as trace:
+        if is_base_model:
+            prompt_text = f"Question: {question}\nAnswer: Let's think step by step. "
+            inputs = tokenizer(prompt_text, return_tensors="pt").to(model.device)
+        else:
+            messages = [{"role": "user", "content": f"{instruction}\n\nProblem: {question}"}]
+            inputs = tokenizer.apply_chat_template(
+                messages, add_generation_prompt=True, return_tensors="pt", return_dict=True
+            ).to(model.device)
 
-    with torch.no_grad():
-        out = model.generate(
-            inputs, max_new_tokens=max_new_tokens, do_sample=False,
-            pad_token_id=tokenizer.eos_token_id,
-        )
-    return tokenizer.decode(out[0][inputs.shape[-1]:], skip_special_tokens=True)
+        with torch.no_grad():
+            out = model.generate(
+                **inputs, max_new_tokens=max_new_tokens, max_length=None, do_sample=False,
+                pad_token_id=tokenizer.eos_token_id,
+            )
+        input_len = inputs["input_ids"].shape[-1]
+        output_text = tokenizer.decode(out[0][input_len:], skip_special_tokens=True)
+        trace.set_output(output_text)
+
+    return output_text
 
 
 def run_eval(
@@ -58,6 +79,7 @@ def run_eval(
     max_new_tokens: int = 512,
     load_in_4bit: bool = True,
     tag: str = "baseline",
+    is_base_model: bool = False,
 ) -> dict:
     """
     Runs GSM8K eval and writes both detailed predictions and a summary to
@@ -77,9 +99,9 @@ def run_eval(
     records, correct = [], 0
     start = time.time()
 
-    for ex in tqdm(ds, desc=f"Evaluating [{tag}]"):
+    for ex in tqdm(ds, desc=f"Evaluating GSM8K [{tag}]"):
         gold = extract_final_answer(ex["answer"])
-        raw_output = _generate(model, tokenizer, ex["question"], instruction, max_new_tokens)
+        raw_output = _generate(model, tokenizer, ex["question"], instruction, max_new_tokens, is_base_model)
         pred = extract_final_answer(raw_output)
         is_correct = numbers_match(pred, gold)
         correct += int(is_correct)

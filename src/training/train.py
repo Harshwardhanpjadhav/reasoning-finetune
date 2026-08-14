@@ -31,7 +31,7 @@ def train(model_config: dict, training_config: dict):
     from trl import SFTTrainer, SFTConfig
     import wandb
 
-    from src.data.loader import load_gsm8k
+    from src.data.loader import load_cot_dataset
     from src.data.preprocess import preprocess_dataset
 
     t_cfg = training_config["training"]
@@ -67,7 +67,8 @@ def train(model_config: dict, training_config: dict):
         use_gradient_checkpointing="unsloth",
     )
 
-    raw_ds = load_gsm8k(split=d_cfg["split"])
+    # Ingest from the generalized CoT dataset loader using config parameters
+    raw_ds = load_cot_dataset(dataset_name=d_cfg["name"], split=d_cfg["split"])
     train_ds = preprocess_dataset(raw_ds, tokenizer)
 
     args = SFTConfig(
@@ -82,7 +83,7 @@ def train(model_config: dict, training_config: dict):
         save_steps=t_cfg["save_steps"],
         save_total_limit=t_cfg["save_total_limit"],
         report_to="wandb",
-        bf16=True,
+        fp16=True,
     )
 
     trainer = SFTTrainer(

@@ -1,0 +1,33 @@
+[34m[1mwandb[0m: Detected [huggingface_hub.inference, openai] in use.
+[34m[1mwandb[0m: Use W&B Weave for improved LLM call tracing. Install Weave with `pip install weave` then add `import weave` to the top of your script.
+[34m[1mwandb[0m: For more information, check out the docs at: https://weave-docs.wandb.ai
+==((====))==  Unsloth 2026.8.16: Fast Qwen2 patching. Transformers: 5.5.0.
+   \\   /|    Tesla T4. Num GPUs = 1. Max memory: 14.562 GB. Platform: Linux.
+O^O/ \_/ \    Torch: 2.11.0+cu130. CUDA: 7.5. CUDA Toolkit: 13.0. Triton: 3.6.0
+\        /    Bfloat16 = FALSE. FA [Xformers = 0.0.35. FA2 = False]
+ "-____-"     Free license: http://github.com/unslothai/unsloth
+Unsloth: Fast downloading is enabled - ignore downloading bars which are red colored!
+Loading weights: 100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 339/339 [00:09<00:00, 34.92it/s]
+Unsloth: Dropout = 0 is supported for fast patching. You are using dropout = 0.05.
+Unsloth will patch all other layers, except LoRA matrices, causing a performance hit.
+Unsloth 2026.8.16 patched 28 layers with 0 QKV layers, 0 O layers and 0 MLP layers.
+Map: 100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 7473/7473 [00:00<00:00, 12081.14 examples/s]
+warmup_ratio is deprecated and will be removed in v5.2. Use `warmup_steps` instead.
+Traceback (most recent call last):
+  File "/teamspace/studios/this_studio/reasoning-finetune/scripts/run_training.py", line 27, in <module>
+    main()
+  File "/teamspace/studios/this_studio/reasoning-finetune/scripts/run_training.py", line 23, in main
+    train(model_cfg, training_cfg)
+  File "/teamspace/studios/this_studio/reasoning-finetune/src/training/train.py", line 73, in train
+    args = SFTConfig(
+           ^^^^^^^^^^
+  File "/teamspace/studios/this_studio/reasoning-finetune/unsloth_compiled_cache/UnslothSFTTrainer.py", line 807, in __init__
+    super().__init__(**_unsloth_filter_config_init_kwargs(SFTConfig, _unsloth_config_arguments))
+  File "<string>", line 129, in __init__
+  File "/home/zeus/miniconda3/envs/cloudspace/lib/python3.12/site-packages/trl/trainer/sft_config.py", line 262, in __post_init__
+    super().__post_init__()
+  File "/home/zeus/miniconda3/envs/cloudspace/lib/python3.12/site-packages/transformers/training_args.py", line 1537, in __post_init__
+    self._validate_args()
+  File "/home/zeus/miniconda3/envs/cloudspace/lib/python3.12/site-packages/transformers/training_args.py", line 1699, in _validate_args
+    raise ValueError(error_message)
+ValueError: Your setup doesn't support bf16/gpu. You need to assign use_cpu if you want to train the model on CPU. You need Ampere+ GPU with cuda>=11.0.

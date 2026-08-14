@@ -1,5 +1,6 @@
-base_model: "unsloth/Qwen2.5-7B-Instruct-bnb-4bit"
-max_seq_length: 2048
+base_model: "unsloth/gemma-2-2b-bnb-4bit"
+is_base_model: true
+max_seq_length: 1024
 load_in_4bit: true
 
 lora:

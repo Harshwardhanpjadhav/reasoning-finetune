@@ -17,7 +17,7 @@ def _client():
     return Langfuse(
         public_key=os.environ.get("LANGFUSE_PUBLIC_KEY"),
         secret_key=os.environ.get("LANGFUSE_SECRET_KEY"),
-        host=os.environ.get("LANGFUSE_HOST", "https://cloud.langfuse.com"),
+        host="https://us.cloud.langfuse.com",
     )
 
 
@@ -38,12 +38,19 @@ def trace_generation(name: str, input_text: str, metadata: dict | None = None):
 
     client = _client()
     start = time.time()
-    generation = client.generation(name=name, input=input_text, metadata=metadata or {})
-    wrapper = _TraceWrapper(generation, start)
-    try:
-        yield wrapper
-    finally:
-        wrapper.finalize()
+    
+    # Langfuse v4 uses OpenTelemetry context managers for generations
+    with client.start_as_current_observation(
+        as_type="generation",
+        name=name,
+        input=input_text,
+        metadata=metadata or {}
+    ) as generation:
+        wrapper = _TraceWrapper(generation, start)
+        try:
+            yield wrapper
+        finally:
+            wrapper.finalize()
 
 
 class _TraceWrapper:
@@ -57,7 +64,12 @@ class _TraceWrapper:
 
     def finalize(self):
         latency = time.time() - self._start
-        self._generation.end(output=self._output, metadata={"latency_sec": latency})
+        # In v4, we use .update() to append output/metadata to the observation
+        # The observation automatically ends when the 'with' block exits.
+        self._generation.update(
+            output=self._output, 
+            metadata={"latency_sec": latency}
+        )
 
 
 class _NullTrace:
